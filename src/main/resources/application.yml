@@ -1,0 +1,55 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: codecash
+  graphql:
+    schema:
+      file-extension: .graphqls
+      locations: "classpath:graphql/:"
+      file-extensions:
+    graphiql:
+      enabled: true
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/codecash"
+    username:
+    password:
+    driver-class-name: org.postgresql.Driver
+  cache:
+    type: redis
+    redis:
+      time-to-live: 10m
+  flyway:
+    enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  show-actuator: true
+  swagger-ui:
+    title: Code & Cash API
+    description: Documentation for all code & cash api endpoints (REST and GraphQL)
+    path: /swagger-ui.html
+
+
+
+
+
+
