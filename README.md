@@ -1,8 +1,8 @@
 # API Hero: From Zero to Deploy with Spring Boot and GraphQL
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![Java Version](https://img.shields.io/badge/java-21-blue)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.x-green)
+![Java Version](https://img.shields.io/badge/java-25-blue)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.x-green)
 
 Welcome to the official source code repository for the **API Hero** course! This project is a complete, production-ready transactional API designed to teach modern backend development practices with Java and the Spring ecosystem.
 
@@ -20,8 +20,8 @@ The main features include:
 ## Tech Stack
 
 This project is built using a modern, powerful tech stack, as outlined in the course plan:
-* **Language**: Java 21
-* **Framework**: Spring Boot 3.2.x
+* **Language**: Java 25
+* **Framework**: Spring Boot 3.5.x
 * **API**: Spring for GraphQL
 * **Database**: PostgreSQL
 * **Database Access**: Spring Data JPA / Hibernate
@@ -33,7 +33,7 @@ This project is built using a modern, powerful tech stack, as outlined in the co
 ## Prerequisites
 
 Before you begin, ensure you have the following software installed on your machine.
-* JDK 21 (Java Development Kit)
+* JDK 25 (Java Development Kit)
 * Docker and Docker Compose
 * A Java IDE, such as IntelliJ IDEA Community Edition
 * Git
