@@ -1,0 +1,103 @@
+# ------------------------------------------------------------------
+# TIPOS DE DADOS (Como os objetos se parecem)
+# ------------------------------------------------------------------
+
+# Define a estrutura de dados para um Usuário.
+# Corresponde à nossa entidade `User.java`.
+# Os campos com "!" são obrigatórios (non-nullable).
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    document: String!
+    createdAt: String!
+    account: Account
+}
+
+# Define a estrutura de dados para uma Conta.
+# Corresponde à nossa entidade `Account.java`.
+type Account {
+    id: ID!
+    balance: Float! # No GraphQL, usamos Float para números decimais. O backend usará BigDecimal para precisão.
+}
+
+# Define a estrutura de dados para uma Transação.
+# Corresponde à nossa entidade `Transaction.java`.
+type Transaction {
+    id: ID!
+    amount: Float!
+    payerAccount: Account!
+    payeeAccount: Account!
+    transactionTime: String!
+}
+
+# ------------------------------------------------------------------
+# OPERAÇÕES DE LEITURA (Como buscar dados)
+# ------------------------------------------------------------------
+
+# O tipo `Query` é um ponto de entrada especial para todas as operações de busca.
+type Query {
+    # Busca um único usuário pelo seu ID.
+    # Exemplo de uso: userById(id: "uuid-aqui")
+    userById(id: ID!): User
+
+    # Retorna uma lista de todos os usuários.
+    # Útil para debug e visualização geral.
+    allUsers: [User]
+}
+
+# ------------------------------------------------------------------
+# OPERAÇÕES DE ESCRITA (Como modificar dados)
+# ------------------------------------------------------------------
+
+# O tipo `Mutation` é o ponto de entrada especial para todas as operações de escrita (criar, atualizar, deletar).
+type Mutation {
+    # Cria um novo usuário e, consequentemente, sua conta com saldo zero.
+    createUser(input: CreateUserInput!): User
+
+    # Realiza uma nova transação entre duas contas.
+    createTransaction(input: CreateTransactionInput!): Transaction
+
+    # ATUALIZAÇÃO: Atualiza os dados de um usuário existente.
+    # Retorna o usuário com os dados atualizados.
+    updateUser(id: ID!, input: UpdateUserInput!): User
+
+    # ATUALIZAÇÃO: Deleta um usuário pelo ID.
+    # Retorna um booleano para confirmar o sucesso da operação.
+    deleteUser(id: ID!): Boolean
+
+    addFunds(input: AddFundsInput!): Account # Nova mutation
+
+}
+
+# ------------------------------------------------------------------
+# TIPOS DE ENTRADA (Como agrupar argumentos)
+# ------------------------------------------------------------------
+
+# `input` funciona como um DTO para as mutations.
+# Agrupa todos os dados necessários para criar um usuário em um único objeto.
+input CreateUserInput {
+    name: String!
+    email: String!
+    document: String!
+    password: String!
+}
+
+# Agrupa todos os dados necessários para criar uma transação.
+input CreateTransactionInput {
+    amount: Float!
+    payerAccountId: ID!
+    payeeAccountId: ID!
+}
+
+# ATUALIZAÇÃO: Novo DTO de entrada para a atualização de usuário.
+# Os campos são opcionais, pois o cliente pode querer atualizar apenas o nome ou apenas o e-mail.
+input UpdateUserInput {
+    name: String
+    email: String
+}
+
+input AddFundsInput {
+    accountId: ID!
+    amount: Float!
+}

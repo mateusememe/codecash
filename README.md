@@ -44,7 +44,7 @@ To get a local copy up and running, follow these simple steps.
 
 1.  **Clone the repository:**
     ```sh
-    git clone [https://github.com/your-username/api-hero.git](https://github.com/your-username/api-hero.git)
+    git clone [https://github.com/mateusememe/codecash.git](https://github.com/mateusememe/codecash.git)
     cd api-hero
     ```
 
